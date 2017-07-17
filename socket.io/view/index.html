@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>聊天</title>
+</head>
+<body>
+	
+
+	<!-- 这是加载socket.io这个js文件 -->
+	<script src="/socket.io/socket.io.js"></script>
+
+
+	<script>
+
+		//连接服务器
+	  var socket = io('http://192.168.17.253:3000');
+
+	  //客户端监听了news事件，就可以接受到服务器发送到这个事件的数据
+	  socket.on('news', function (data) {
+	    console.log(data);
+
+	    //客户端触发client事件，并且发送数据给服务器端
+	    socket.emit('client', { my: '客户端' });
+	  });
+	</script>
+</body>
+</html>
